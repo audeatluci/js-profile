@@ -10,9 +10,9 @@ router.get('/', function(req, res, next) {
   res.json([{
   	id: 1,
     username: "samsepi0l",
-    name:"John",
+    name: "John",
     lastName: "Smith",
-    nationality:"English",
+    nationality: "English",
     age: 23
   }, {
   	id: 2,
@@ -27,7 +27,7 @@ router.get('/', function(req, res, next) {
     name:"Oscar",
     lastName: "De la Renta",
     nationality:"Venezuelan",
-    age: 35
+    age:    35
   }]);
 });
 
