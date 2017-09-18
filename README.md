@@ -4,6 +4,8 @@
     1. Js-profile
     2. React-backend
 2. Make sure you install eslint in your text editor
+3. Run: npm start
+4. http://localhost:3000/
 
 In case eslint fails:
 
