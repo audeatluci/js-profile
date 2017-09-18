@@ -2,7 +2,7 @@ import React from 'react';
 
 const UserInfo = ({ match }) => (
   <div>
-    <h3>hello</h3>
+    <h3>Hey {match.params.userId}</h3>
   </div>
 )
 

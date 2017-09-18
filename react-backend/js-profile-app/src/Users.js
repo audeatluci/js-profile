@@ -22,7 +22,6 @@ class Users extends Component {
       <div className="Users">
         <h1>Users</h1>
         {this.state.users.map(user =>
-          /*<User key={user.id} name={user.name} />*/
           <Link key={user.id} to={`./${user.id}`}>
             <User name={user.name} />
           </Link>
