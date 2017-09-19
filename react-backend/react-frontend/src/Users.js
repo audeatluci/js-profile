@@ -19,18 +19,16 @@ class Users extends Component {
 
   render() {
     return (
-      <Router>
-        <div className="Users">
-          <h1>Users</h1>
-          {this.state.users.map(user =>
-            <Link key={user.id} to={`./${user.id}`}>
-              <User name={user.name} />
-            </Link>
-          )}
+      <div className="Users">
+        <h1>Users</h1>
+        {this.state.users.map(user =>
+          <Link key={user.id} to={`./${user.id}`}>
+            <User name={user.name} />
+          </Link>
+        )}
 
-          <Route path={`./:userId`} component={UserInfo}/>
-        </div>
-      </Router>
+        <Route path={`./:userId`} component={UserInfo}/>
+      </div>
     );
   }
 }
