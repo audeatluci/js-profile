@@ -7,8 +7,51 @@ var bodyParser = require('body-parser');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
+var mongoose = require('mongoose');
 
 var app = express();
+
+//Mongoose stuff
+mongoose.connect('mongodb://127.0.0.1:27017/');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+ // we're connected!
+});
+
+var userSchema = mongoose.Schema({
+  name: String
+});
+
+var User = mongoose.model('User', userSchema);
+
+var pontusVariable = new User({ name: 'Pontus' });
+console.log(pontusVariable.name);
+
+pontusVariable.save(function (err, pontusVariable) {
+  if (err) return console.error(err);
+ });
+ 
+ var User = mongoose.model('User', userSchema);
+ 
+ User.find(function (err, kittens) {
+  if (err) return console.error(err);
+  console.log(kittens);
+ })
+
+var user2 = new User({ name: 'Akram' });
+
+user2.save(function (err, user2) {
+  if (err) return console.error(err);
+ });
+
+
+ User.find(function (err, users) {
+  if (err) return console.error(err);
+  console.log(users);
+ })
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

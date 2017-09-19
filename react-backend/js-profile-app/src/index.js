@@ -1,8 +1,23 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Users from './Users';
+import UserInfo from './Components/UserInfo';
 import registerServiceWorker from './registerServiceWorker';
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const BasicExample = () => (
+  <Router>
+    <div>
+      <Route exact path="/" component={Users}/>
+      <Route path="/:userId" component={UserInfo} />
+    </div>
+  </Router>
+)
+
+ReactDOM.render(<BasicExample />, document.getElementById('root'));
 registerServiceWorker();
