@@ -12,23 +12,25 @@ class Users extends Component {
   state = {users: []}
 
   componentDidMount() {
-    fetch('/users')
+    return fetch('/users')
       .then(res => res.json())
       .then(users => this.setState({ users }));
   }
 
   render() {
     return (
-      <div className="Users">
-        <h1>Users</h1>
-        {this.state.users.map(user =>
-          <Link key={user.id} to={`./${user.id}`}>
-            <User name={user.name} />
-          </Link>
-        )}
+      <Router>
+        <div className="Users">
+          <h1>Users</h1>
+          {this.state.users.map(user =>
+            <Link key={user.id} to={`./${user.id}`}>
+              <User name={user.name} />
+            </Link>
+          )}
 
-        <Route path={`./:userId`} component={UserInfo}/>
-      </div>
+          <Route path={`./:userId`} component={UserInfo}/>
+        </div>
+      </Router>
     );
   }
 }
