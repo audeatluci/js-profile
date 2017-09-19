@@ -1,39 +1,29 @@
 let express = require('express');
 let router = express.Router();
 
-let dummyData = [{
-  id: 1,
-  username: "samsepi0l",
-  name: "John",
-  lastName: "Smith",
-  nationality: "English",
-  age: 23
-}, {
-  id: 2,
-  username: "D0loresH4ze",
-  name:"Dolores",
-  lastName: "Hamilton",
-  nationality:"Scottish",
-  age: 67
-},{
-  id: 3,
-  username: "samiiuuuiupi0l",
-  name:"Oscar",
-  lastName: "De la Renta",
-  nationality:"Venezuelan",
-  age: 35
-}];
+let mongoose = require('mongoose');
+mongoose.connect('mongodb://127.0.0.1:27017/');
+var User = require('./../UserModel.js');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  return res.json(dummyData);
+  let users = User.find(function (err, userData) {
+    if (err) return console.error(err);
+    console.log(userData);
+    return res.json(userData);
+  });
+
+  return users;
 });
 
 router.get('/:userId', function(req, res, next) {
-  let user = dummyData.filter(user => {
-    return user.id.toString() === req.params.userId.toString();
+  let user = User.find({ _id: req.params.userId }, function (err, userData) {
+    if (err) return console.error(err);
+    console.log(userData);
+    return res.json(userData);
   });
-  return res.json(user);
+
+  return user;
 });
 
 module.exports = router;

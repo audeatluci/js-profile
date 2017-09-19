@@ -5,14 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
+var mongoose = require('mongoose');
+var User = require('./UserModel.js');
 var index = require('./routes/index');
 var users = require('./routes/users');
-var mongoose = require('mongoose');
 
 var app = express();
 
 //Mongoose stuff
-mongoose.connect('mongodb://127.0.0.1:27017/');
+mongoose.connect('mongodb://127.0.0.1:27017/database');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -20,38 +21,41 @@ db.once('open', function() {
  // we're connected!
 });
 
-var userSchema = mongoose.Schema({
-  name: String
+//Delete from here to where we state 'END DELETION'
+var user1 = new User({
+  firstName: 'Pontus',
+  lastName: 'Ekhem',
+  age: 26,
+  nationality: 'Swedish'
 });
 
-var User = mongoose.model('User', userSchema);
-
-var pontusVariable = new User({ name: 'Pontus' });
-console.log(pontusVariable.name);
-
-pontusVariable.save(function (err, pontusVariable) {
+user1.save(function (err, user1) {
   if (err) return console.error(err);
- });
- 
- var User = mongoose.model('User', userSchema);
- 
- User.find(function (err, kittens) {
-  if (err) return console.error(err);
-  console.log(kittens);
- })
+});
 
-var user2 = new User({ name: 'Akram' });
+var user2 = new User({
+  firstName: 'Akram',
+  lastName: 'Ted',
+  age: 25,
+  nationality: 'British'
+});
 
 user2.save(function (err, user2) {
   if (err) return console.error(err);
- });
+});
 
+var user3 = new User({
+  firstName: 'Nick',
+  lastName: 'Thomas',
+  age: 32,
+  nationality: 'Danish'
+});
 
- User.find(function (err, users) {
+user3.save(function (err, user3) {
   if (err) return console.error(err);
-  console.log(users);
- })
+});
 
+//END DELETION
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
