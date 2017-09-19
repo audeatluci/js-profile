@@ -21,6 +21,7 @@ class Users extends Component {
     return (
       <div className="Users">
         <h1>Users</h1>
+        <h2>Displayed using a shit load of JS</h2>
         {this.state.users.map(user =>
           <Link key={user.id} to={`./${user.id}`}>
             <User name={user.name} />

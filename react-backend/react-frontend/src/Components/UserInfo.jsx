@@ -1,10 +1,7 @@
 import React from 'react';
-
-// const UserInfo = ({ match, ...params }) => (
-//   <div>
-//     <h3>Hey {match.params.userId} {JSON.stringify(params)}</h3>
-//   </div>
-// )
+import {
+  Link
+} from 'react-router-dom';
 
 class UserInfo extends React.Component {
   state = {hasLoaded: false};
@@ -22,7 +19,7 @@ class UserInfo extends React.Component {
   render() {
     console.log(this.state);
     return (
-      <div>
+      <div className="UserInfo">
         <h3>Hey {this.state.name} {this.state.lastName}!</h3>
         <hr />
         <h4>Details</h4>
@@ -30,6 +27,8 @@ class UserInfo extends React.Component {
           <li>Username: {this.state.username}</li>
           <li>Age: {this.state.age}</li>
         </ul>
+        <hr/>
+        <Link to="/">Back to all users</Link>
       </div>
     )
   }
