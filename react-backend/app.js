@@ -13,7 +13,7 @@ var users = require('./routes/users');
 var app = express();
 
 //Mongoose stuff
-mongoose.connect('mongodb://127.0.0.1:27017/database');
+mongoose.connect('mongodb://172.17.0.1:27017/database');
 
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
@@ -88,6 +88,10 @@ app.use(function(err, req, res, next) {
   // render the error page
   res.status(err.status || 500);
   res.render('error');
+});
+
+app.listen(3000, function() {
+   console.log('Started on port 3000');
 });
 
 module.exports = app;

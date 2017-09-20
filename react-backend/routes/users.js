@@ -1,8 +1,6 @@
 let express = require('express');
 let router = express.Router();
 
-let mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/');
 var User = require('./../UserModel.js');
 
 /* GET users listing. */
